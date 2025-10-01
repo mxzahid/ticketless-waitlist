@@ -136,7 +136,7 @@ export function Features() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary opacity-90" />
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10" />
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <feature.icon className="h-8 w-8 text-white drop-shadow-lg" strokeWidth={1.5} />
+                  <feature.icon className="h-8 w-8 text-white drop-shadow-lg" />
                 </div>
                 {/* Liquid shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />

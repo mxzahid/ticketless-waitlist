@@ -70,7 +70,7 @@ export function HowItWorks() {
             <div key={step.number} className="relative">
               <div className="glass rounded-2xl p-8 text-center h-full">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6">
-                  <step.icon className="h-8 w-8 text-white" strokeWidth={1.5} />
+                  <step.icon className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-sm font-bold text-primary mb-2">{step.number}</div>
                 <h3 className="text-xl font-semibold mb-3">{step.title}</h3>

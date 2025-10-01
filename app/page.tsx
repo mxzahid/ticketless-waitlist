@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { Hero } from "./components/hero"
 import { Features } from "./components/features"
 import { HowItWorks } from "./components/how-it-works"
@@ -29,7 +30,9 @@ export default function Page() {
         <HowItWorks />
         <WhyAccurate />
         <FAQ />
-        <WaitlistForm />
+        <Suspense fallback={<div>Loading...</div>}>
+          <WaitlistForm />
+        </Suspense>
         <Footer />
       </div>
     </main>

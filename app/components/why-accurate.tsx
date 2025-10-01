@@ -57,7 +57,7 @@ export function WhyAccurate() {
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Database className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                    <Database className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Official SF Open Data</h4>
@@ -69,7 +69,7 @@ export function WhyAccurate() {
 
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                    <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Geofencing Technology</h4>
@@ -81,7 +81,7 @@ export function WhyAccurate() {
 
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                    <Clock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Smart Timing</h4>
