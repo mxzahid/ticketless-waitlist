@@ -1,10 +1,11 @@
-import { Hero } from "@/components/hero"
-import { Features } from "@/components/features"
-import { HowItWorks } from "@/components/how-it-works"
-import { WhyAccurate } from "@/components/why-accurate"
-import { FAQ } from "@/components/faq"
-import { WaitlistForm } from "@/components/waitlist-form"
-import { Footer } from "@/components/footer"
+import { Hero } from "./components/hero"
+import { Features } from "./components/features"
+import { HowItWorks } from "./components/how-it-works"
+import { WhyAccurate } from "./components/why-accurate"
+import { FAQ } from "./components/faq"
+import { WaitlistForm } from "./components/waitlist-form"
+import { MobileCarousel } from "./components/mobile-carousel"
+import { Footer } from "./components/footer"
 
 export const metadata = {
   title: "TICKETLESS",
@@ -23,6 +24,7 @@ export default function Page() {
       <div className="map-bg fixed inset-0 opacity-30 pointer-events-none" />
       <div className="relative z-10">
         <Hero />
+        <MobileCarousel />
         <Features />
         <HowItWorks />
         <WhyAccurate />
