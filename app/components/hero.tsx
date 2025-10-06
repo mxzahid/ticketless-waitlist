@@ -21,7 +21,6 @@ export function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <div className="animate-fade-in">
-          {/* Centered "Made with ❤️ in San Francisco." at the top */}
           <div className="flex justify-center mb-6">
             <div className="px-8 py-4 bg-transparent backdrop-blur-sm border border-white/5 rounded-full shadow-sm">
               <span className="text-base font-medium text-gray-600/80">Made with ❤️ in San Francisco</span>
@@ -29,7 +28,7 @@ export function Hero() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
-            Never Get <span className="gradient-text">Towed</span> in SF Again
+            Never Get <span className="gradient-text">Tickets</span> in SF Again
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">

@@ -83,11 +83,6 @@ const features = [
     description: "Built for a smooth, native experience that feels right at home.",
   },
   {
-    icon: Shield,
-    title: "Privacy First",
-    description: "Your location data never leaves your device. We can't see where you park.",
-  },
-  {
     icon: Zap,
     title: "Battery Efficient",
     description: "Uses Apple's CoreLocation APIs intelligently. Minimal impact on battery life.",
@@ -97,7 +92,7 @@ const features = [
 export function Features() {
   return (
     <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Parking Protection on <span className="gradient-text">Autopilot</span>
@@ -107,54 +102,28 @@ export function Features() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const isFirstCard = index === 0;
-            return (
-              <div
-                key={feature.title}
-                className={`group relative rounded-3xl p-8 glass-card overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 ${
-                  isFirstCard ? 'ring-2 ring-primary/40 ring-offset-4 ring-offset-background shadow-lg shadow-primary/10' : ''
-                }`}
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: 'fade-in 0.6s ease-out forwards',
-                  opacity: 0
-                }}
-              >
-              {/* Animated liquid-like background element */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/30 via-accent/20 to-transparent rounded-full blur-xl animate-pulse" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-accent/30 via-primary/20 to-transparent rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}} />
-              </div>
-
-              {/* Liquid reflection effect */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-60" />
-
-              {/* Icon container with enhanced glass effect */}
-              <div className="relative w-16 h-16 rounded-2xl mb-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary opacity-90" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10" />
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <feature.icon className="h-8 w-8 text-white drop-shadow-lg" />
+        <div className="divide-y divide-border">
+          {features.map((feature) => (
+            <div key={feature.title} className="flex gap-6 py-6 first:pt-0 last:pb-0">
+              <div className="flex-shrink-0">
+                <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10" />
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <feature.icon className="h-8 w-8 text-white drop-shadow-lg" />
+                  </div>
                 </div>
-                {/* Liquid shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
               </div>
-
-              <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent relative z-10">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-base relative z-10">{feature.description}</p>
-
-              {/* Bottom accent dot with enhanced animation */}
-              <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse" />
-
-                {/* Subtle border animation */}
-                <div className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-px" style={{padding: '1px'}} />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-semibold mb-1">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
