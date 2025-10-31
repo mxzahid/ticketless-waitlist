@@ -57,7 +57,7 @@ export async function submitWaitlist(data: WaitlistFormData): Promise<WaitlistRe
 
     const supabase = await createClient()
 
-    // Check if this IP has submitted in the last 24 hours (rate limiting)
+    // Rate limiting: Check entries from this IP in the last 24 hours (allow up to 5 per day)
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
     const { data: recentSubmissions, error: rateLimitError } = await supabase
       .from("waitlist")
@@ -70,10 +70,10 @@ export async function submitWaitlist(data: WaitlistFormData): Promise<WaitlistRe
       return { success: false, error: "Something went wrong. Please try again later." }
     }
 
-    if (recentSubmissions && recentSubmissions.length > 0) {
+    if (recentSubmissions && recentSubmissions.length >= 5) {
       return {
         success: false,
-        error: "You've already joined the waitlist recently. Please check your email.",
+        error: "Too many entries from this location recently. Please try again later.",
       }
     }
 

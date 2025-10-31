@@ -35,11 +35,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "This email is already on the waitlist" }, { status: 400 })
     }
 
-    // Check if IP already exists (prevent spam)
-    const { data: existingIP } = await supabase.from("waitlist").select("ip_hash").eq("ip_hash", ipHash).single()
+    // Rate limiting: Check entries from this IP in the last 24 hours (allow up to 5 per day)
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+    const { data: recentEntries } = await supabase
+      .from("waitlist")
+      .select("id")
+      .eq("ip_hash", ipHash)
+      .gte("created_at", twentyFourHoursAgo)
 
-    if (existingIP) {
-      return NextResponse.json({ error: "An entry from this location already exists" }, { status: 400 })
+    if (recentEntries && recentEntries.length >= 5) {
+      return NextResponse.json({
+        error: "Too many entries from this location recently. Please try again later."
+      }, { status: 429 })
     }
 
     // Validate referral code if provided

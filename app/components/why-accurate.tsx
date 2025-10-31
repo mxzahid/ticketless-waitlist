@@ -46,7 +46,7 @@ export function WhyAccurate() {
             Why It's <span className="gradient-text">Accurate</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            We use official SF data and smart algorithms to ensure you never get a false alarm.
+            Ticketless uses official SF data and smart algorithms to ensure you never get a false alarm.
           </p>
         </div>
 

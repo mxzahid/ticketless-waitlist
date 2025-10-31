@@ -16,6 +16,9 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          <p className="mb-4 font-semibold text-foreground">
+            <strong>IMPORTANT DISCLAIMER:</strong> All information provided by Ticketless is for estimation purposes only and does not replace official street signs or parking regulations. Ticketless and its creators assume no liability for parking tickets, violations, or any damages resulting from the use of this service.
+          </p>
           <p>© 2025 TICKETLESS.</p>
         </div>
       </div>

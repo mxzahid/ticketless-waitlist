@@ -241,7 +241,7 @@ export function WaitlistForm() {
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
-                By joining, you agree to receive one email when we launch. I respect your privacy and won't share your
+                By joining, you agree to receive one email when the app launches. I respect your privacy and won't share your
                 info.
               </p>
             </div>
