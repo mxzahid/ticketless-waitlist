@@ -53,7 +53,7 @@ export function WhyAccurate() {
         <div className="glass rounded-3xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6">The Math Behind It</h3>
+              <h3 className="text-2xl font-bold mb-6">The Idea Behind It</h3>
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -110,8 +110,7 @@ export function WhyAccurate() {
                 <div className="text-6xl font-bold gradient-text mb-4">2hrs</div>
                 <p className="text-lg font-semibold mb-2">Advance Warning</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  The sweet spot between "too early to care" and "too late to move." Based on user research with 200+ SF
-                  drivers.
+                  The sweet spot between "too early to care" and "too late to move."
                 </p>
               </div>
             </div>
