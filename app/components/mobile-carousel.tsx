@@ -1,11 +1,15 @@
 const mobileImages = [
   {
     src: "/mobile-screenshots/app-screen-1.png",
-    alt: "TICKETLESS app screen showing parking detection feature"
+    alt: "TICKETLESS app screen landing page"
   },
   {
     src: "/mobile-screenshots/app-screen-3.png",
     alt: "TICKETLESS app screen showing parking restrictions"
+  },
+  {
+    src: "/mobile-screenshots/app-screen-4.png",
+    alt: "TICKETLESS app screen showing settings"
   }
 ]
 
@@ -22,10 +26,10 @@ export function MobileCarousel() {
           </p>
         </div>
 
-        {/* Images displayed side by side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
+        {/* Images displayed side by side on desktop, stacked on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 items-start justify-items-center">
           {mobileImages.map((image, index) => (
-            <div key={index} className="w-full max-w-sm">
+            <div key={index} className="w-full max-w-xs">
               <img
                 src={image.src}
                 alt={image.alt}

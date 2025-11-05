@@ -42,7 +42,7 @@ const steps = [
     icon: MapPin,
     number: "02",
     title: "Park Anywhere in SF",
-    description: "The app detects when you park and checks local street-cleaning schedules.",
+    description: "The app detects when you park and checks local parking restrictions.",
   },
   {
     icon: Bell,
