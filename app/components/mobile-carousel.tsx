@@ -1,10 +1,10 @@
 const mobileImages = [
   {
-    src: "/mobile-screenshots/app-screen-1.png",
+    src: "/mobile-screenshots/onboarding_start.png",
     alt: "TICKETLESS app screen landing page"
   },
   {
-    src: "/mobile-screenshots/app-screen-3.png",
+    src: "/mobile-screenshots/main_screen.png",
     alt: "TICKETLESS app screen showing parking restrictions"
   },
   {
