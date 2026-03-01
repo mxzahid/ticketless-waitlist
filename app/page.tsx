@@ -1,40 +1,16 @@
-import { Suspense } from "react"
-import { Hero } from "./components/hero"
-import { Features } from "./components/features"
-import { HowItWorks } from "./components/how-it-works"
-import { WhyAccurate } from "./components/why-accurate"
-import { FAQ } from "./components/faq"
-import { WaitlistForm } from "./components/waitlist-form"
-import { MobileCarousel } from "./components/mobile-carousel"
-import { Footer } from "./components/footer"
+import { LaunchLanding } from "./components/launch-landing"
 
 export const metadata = {
   title: "TICKETLESS",
   description:
-    "Free iOS app that auto-detects your parking and warns you about street-cleaning and tow-away restrictions in San Francisco.",
+    "Privacy-first iOS parking assistant with street-cleaning and tow-window alerts.",
   openGraph: {
     title: "TICKETLESS",
     description:
-      "Free iOS app that auto-detects your parking and warns you about street-cleaning and tow-away restrictions in San Francisco.",
+      "Privacy-first iOS parking assistant with street-cleaning and tow-window alerts.",
   },
 }
 
 export default function Page() {
-  return (
-    <main className="min-h-screen bg-background">
-      <div className="map-bg fixed inset-0 opacity-30 pointer-events-none" />
-      <div className="relative z-10">
-        <Hero />
-        <MobileCarousel />
-        <Features />
-        <HowItWorks />
-        <WhyAccurate />
-        <FAQ />
-        <Suspense fallback={<div>Loading...</div>}>
-          <WaitlistForm />
-        </Suspense>
-        <Footer />
-      </div>
-    </main>
-  )
+  return <LaunchLanding />
 }
