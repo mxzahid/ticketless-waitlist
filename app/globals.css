@@ -436,16 +436,16 @@
 }
 
 .carousel-stage {
-  min-height: 780px;
-  perspective: 2300px;
+  min-height: 620px;
+  perspective: 2000px;
   display: grid;
   place-items: center;
 }
 
 .carousel-ring {
   position: relative;
-  width: min(760px, 92vw);
-  height: min(760px, 84vh);
+  width: min(580px, 80vw);
+  height: min(600px, 72vh);
   transform-style: preserve-3d;
   will-change: transform;
 }
@@ -454,7 +454,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(265px, 26vw, 392px);
+  width: clamp(220px, 20vw, 300px);
   display: flex;
   flex-direction: column;
   align-items: center;
