@@ -60,7 +60,7 @@ const screens: Screen[] = [
 ]
 
 const CAROUSEL_RADIUS_DESKTOP = 230
-const CAROUSEL_RADIUS_MOBILE = 155
+const CAROUSEL_RADIUS_MOBILE = 120
 const ANGLE_STEP = 360 / screens.length
 
 const keyFeatures = [

@@ -682,18 +682,20 @@
   .hero-phones {
     order: -1;
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: 44vh;
     display: grid;
     place-items: center;
     padding: 0;
     position: relative;
     perspective: 1800px;
     width: 100%;
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
 
   .hero-shot {
     position: absolute;
-    width: clamp(140px, 38vw, 220px);
+    width: clamp(160px, 40vw, 240px);
   }
 
   .hero-shot-front {
@@ -723,6 +725,10 @@
     flex: 0 0 auto;
     flex-direction: column;
     align-items: center;
+  }
+
+  .contact-button {
+    display: none;
   }
 
   .proof-row {
@@ -780,8 +786,8 @@
   .showcase-sticky {
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 0;
-    gap: 0;
+    padding: 2rem 0;
+    gap: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -789,19 +795,19 @@
   }
 
   .carousel-stage {
-    min-height: min(300px, 38vh);
+    min-height: min(500px, 60vh);
     perspective: 1400px;
     flex: 0 0 auto;
     order: 1;
   }
 
   .carousel-ring {
-    width: min(260px, 70vw);
-    height: min(260px, 34vh);
+    width: min(280px, 70vw);
+    height: min(460px, 56vh);
   }
 
   .carousel-item {
-    width: clamp(130px, 36vw, 180px);
+    width: clamp(170px, 44vw, 230px);
   }
 
   .carousel-shot {
@@ -825,7 +831,7 @@
     letter-spacing: -0.04em;
     line-height: 1.05;
     color: #101217;
-    margin: 0 0 12rem;
+    margin: 0;
     padding: 0 1rem;
     flex: 0 0 auto;
   }
@@ -835,7 +841,7 @@
     order: 3;
     text-align: center;
     padding: 0 1rem;
-    margin-top: 12rem;
+    margin: 0;
     flex: 0 0 auto;
   }
 
@@ -851,10 +857,6 @@
     height: 4px;
     max-width: 200px;
     margin-inline: auto;
-  }
-
-  .carousel-item {
-    width: clamp(180px, 50vw, 260px);
   }
 
   .launch-cta {
@@ -888,7 +890,7 @@
   }
 
   .hero-shot {
-    width: clamp(150px, 42vw, 210px);
+    width: clamp(150px, 38vw, 220px);
   }
 
   .hero-title {
@@ -906,16 +908,16 @@
   }
 
   .carousel-stage {
-    min-height: min(260px, 34vh);
+    min-height: min(460px, 56vh);
   }
 
   .carousel-ring {
-    width: min(230px, 65vw);
-    height: min(230px, 30vh);
+    width: min(250px, 65vw);
+    height: min(420px, 52vh);
   }
 
   .carousel-item {
-    width: clamp(115px, 32vw, 160px);
+    width: clamp(155px, 42vw, 210px);
   }
 
   .carousel-shot {
@@ -937,10 +939,6 @@
 
   .showcase-copy p {
     font-size: 0.85rem;
-  }
-
-  .carousel-item {
-    width: clamp(165px, 46vw, 240px);
   }
 
   .feature-grid {
@@ -974,11 +972,7 @@
 }
 
 @media (max-width: 414px) {
-  .showcase-mobile-title {
-    margin-bottom: 5rem;
-  }
-
-  .showcase-mobile-desc {
-    margin-top: 5rem;
+  .carousel-item {
+    width: clamp(145px, 40vw, 190px);
   }
 }
