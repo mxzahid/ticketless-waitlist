@@ -5,7 +5,8 @@ import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useT
 import { useRef, useState, useEffect, type CSSProperties } from "react"
 import GlassButton from "./ui/glass-button"
 
-const IOS_DOWNLOAD_URL = "https://apps.apple.com/"
+const IOS_DOWNLOAD_URL = "https://apps.apple.com/us/app/ticketless/id6754946465"
+
 
 type Screen = {
   src: string
@@ -239,6 +240,13 @@ export function LaunchLanding() {
             >
               <AppleIcon />
               <span>Download for iOS</span>
+            </GlassButton>
+            <GlassButton 
+              variant="default" 
+              href="mailto:az_98@icloud.com"
+              className="ios-button contact-button"
+            >
+              <span>Contact Creator</span>
             </GlassButton>
           </motion.div>
 
