@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion"
-import { useRef, useState, useEffect, type CSSProperties } from "react"
+import { useRef, useState, useEffect, type CSSProperties, type FormEvent } from "react"
 import GlassButton from "./ui/glass-button"
 
 const IOS_DOWNLOAD_URL = "https://apps.apple.com/us/app/ticketless/id6754946465"
@@ -75,6 +75,14 @@ const keyFeatures = [
   "Drag-and-drop parking pin with manual controls",
 ]
 
+function AndroidIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor" style={{ flexShrink: 0 }}>
+      <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84 1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z" />
+    </svg>
+  )
+}
+
 function AppleIcon() {
   return (
     <svg 
@@ -114,6 +122,49 @@ export function LaunchLanding() {
   })
   const [activeIndex, setActiveIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+
+  const [showAndroidModal, setShowAndroidModal] = useState(false)
+  const [androidEmail, setAndroidEmail] = useState("")
+  const [androidPhone, setAndroidPhone] = useState("")
+  const [androidLoading, setAndroidLoading] = useState(false)
+  const [androidSuccess, setAndroidSuccess] = useState(false)
+  const [androidError, setAndroidError] = useState<string | null>(null)
+
+  const handleAndroidSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setAndroidLoading(true)
+    setAndroidError(null)
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!androidEmail || !emailRegex.test(androidEmail)) {
+      setAndroidError("Please enter a valid email address.")
+      setAndroidLoading(false)
+      return
+    }
+
+    try {
+      const res = await fetch("/api/android-waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: androidEmail, phone: androidPhone || null }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Failed to join waitlist")
+      setAndroidSuccess(true)
+    } catch (err) {
+      setAndroidError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setAndroidLoading(false)
+    }
+  }
+
+  const closeAndroidModal = () => {
+    setShowAndroidModal(false)
+    setAndroidEmail("")
+    setAndroidPhone("")
+    setAndroidError(null)
+    setAndroidSuccess(false)
+  }
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)")
@@ -233,14 +284,24 @@ export function LaunchLanding() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <GlassButton 
-              variant="dark" 
-              href={IOS_DOWNLOAD_URL}
-              className="ios-button"
-            >
-              <AppleIcon />
-              <span>Download for iOS</span>
-            </GlassButton>
+            <div className="button-pair">
+              <GlassButton 
+                variant="dark" 
+                href={IOS_DOWNLOAD_URL}
+                className="ios-button"
+              >
+                <AppleIcon />
+                <span>Download for iOS</span>
+              </GlassButton>
+              <button
+                className="android-button"
+                onClick={() => setShowAndroidModal(true)}
+                type="button"
+              >
+                <AndroidIcon />
+                <span>Android Waitlist</span>
+              </button>
+            </div>
             <GlassButton 
               variant="default" 
               href="mailto:az_98@icloud.com"
@@ -280,7 +341,7 @@ export function LaunchLanding() {
             initial={{ opacity: 0, x: 100, y: -50 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            style={{ translateX: "25%", translateY: "-12%", rotate: "6deg" }}
+            style={{ translateX: "32%", translateY: "-12%", rotate: "6deg" }}
           >
             <div className="hero-shot-screen">
               <Image
@@ -298,7 +359,7 @@ export function LaunchLanding() {
             initial={{ opacity: 0, x: -100, y: 50 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            style={{ translateX: "-35%", translateY: "5%", rotate: "-8deg" }}
+            style={{ translateX: "-18%", translateY: "5%", rotate: "-8deg" }}
           >
             <div className="hero-shot-screen">
               <Image
@@ -393,16 +454,102 @@ export function LaunchLanding() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <GlassButton 
-            variant="dark" 
-            href={IOS_DOWNLOAD_URL}
-            className="ios-button-compact"
-          >
-            <AppleIcon />
-            <span>Download for iOS</span>
-          </GlassButton>
+          <div className="button-pair button-pair-cta">
+            <GlassButton 
+              variant="dark" 
+              href={IOS_DOWNLOAD_URL}
+              className="ios-button-compact"
+            >
+              <AppleIcon />
+              <span>Download for iOS</span>
+            </GlassButton>
+            <button
+              className="android-button android-button-compact"
+              onClick={() => setShowAndroidModal(true)}
+              type="button"
+            >
+              <AndroidIcon />
+              <span>Android Waitlist</span>
+            </button>
+          </div>
         </motion.div>
       </motion.section>
+
+      {showAndroidModal && (
+        <div
+          className="android-modal-overlay"
+          onClick={(e) => e.target === e.currentTarget && closeAndroidModal()}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Android Waitlist"
+        >
+          <div className="android-modal">
+            <button className="android-modal-close" onClick={closeAndroidModal} aria-label="Close modal" type="button">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            {androidSuccess ? (
+              <div className="android-modal-success">
+                <span className="android-modal-success-icon">🎉</span>
+                <h3>You&apos;re on the list.</h3>
+                <p>I&apos;ll email you the second Ticketless hits Android. No spam, just one message.</p>
+              </div>
+            ) : (
+              <>
+                <div className="android-modal-header">
+                  <p className="android-modal-eyebrow">
+                    <AndroidIcon />
+                    Android
+                  </p>
+                  <h3 className="android-modal-title">Android&apos;s next.</h3>
+                  <p className="android-modal-subtitle">
+                    Drop your email and you&apos;ll be the first to know when it drops.
+                  </p>
+                </div>
+
+                <form className="android-modal-form" onSubmit={handleAndroidSubmit} noValidate>
+                  <div className="android-modal-field">
+                    <label htmlFor="android-email">Email *</label>
+                    <input
+                      id="android-email"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={androidEmail}
+                      onChange={(e) => setAndroidEmail(e.target.value)}
+                      required
+                      autoComplete="email"
+                    />
+                  </div>
+
+                  <div className="android-modal-field">
+                    <label htmlFor="android-phone">
+                      Phone <span className="android-modal-optional">(Optional but faster heads-up)</span>
+                    </label>
+                    <input
+                      id="android-phone"
+                      type="tel"
+                      placeholder="(415) 555-0123"
+                      value={androidPhone}
+                      onChange={(e) => setAndroidPhone(e.target.value)}
+                      autoComplete="tel"
+                    />
+                  </div>
+
+                  {androidError && (
+                    <div className="android-modal-error">{androidError}</div>
+                  )}
+
+                  <button type="submit" className="android-modal-submit" disabled={androidLoading}>
+                    {androidLoading ? "Joining…" : "Can't wait!"}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

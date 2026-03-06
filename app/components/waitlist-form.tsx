@@ -206,7 +206,7 @@ export function WaitlistForm() {
 
               <div>
                 <Label htmlFor="phone" className="text-base font-semibold mb-2 block">
-                  Phone Number (Optional)
+                  Phone Number (Optional but faster!)
                 </Label>
                 <Input
                   id="phone"

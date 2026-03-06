@@ -125,6 +125,8 @@
 
 .hero-copy {
   max-width: 680px;
+  position: relative;
+  z-index: 1;
 }
 
 .proof-row {
@@ -234,12 +236,14 @@
   justify-content: center;
   gap: 0.7rem;
   border-radius: 999px;
-  padding: 0.94rem 2.2rem 0.94rem 2.45rem;
+  padding: 0.94rem 2.2rem;
   color: #f4f5f8;
   font-size: 1.02rem;
   line-height: 1;
   font-weight: 540;
   letter-spacing: 0;
+  white-space: nowrap;
+  text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(145deg, #3a3c42 0%, #20242b 46%, #07080a 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.38), 0 10px 24px rgba(4, 7, 10, 0.32);
@@ -271,7 +275,7 @@
   z-index: 1;
 }
 
-.ios-button span {
+.ios-button > span:last-child {
   position: relative;
   z-index: 1;
 }
@@ -359,12 +363,12 @@
 }
 
 .hero-shot-front {
-  transform: translateX(-35%) translateY(5%) rotateZ(-8deg);
+  transform: translateX(-18%) translateY(5%) rotateZ(-8deg);
   z-index: 2;
 }
 
 .hero-shot-back {
-  transform: translateX(25%) translateY(-12%) rotateZ(6deg);
+  transform: translateX(32%) translateY(-12%) rotateZ(6deg);
   filter: brightness(0.95) saturate(0.98);
   z-index: 1;
 }
@@ -645,6 +649,8 @@
 
 .ios-button-compact {
   margin-top: 2.5rem;
+  white-space: nowrap;
+  text-align: center;
 }
 
 @keyframes drift {
@@ -669,7 +675,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0 1rem;
+    padding: 0 0 max(1.25rem, env(safe-area-inset-bottom, 1.25rem));
     gap: 0;
   }
 
@@ -677,20 +683,22 @@
     max-width: 100%;
     text-align: center;
     flex: 0 0 auto;
+    padding-bottom: 0.5rem;
   }
 
   .hero-phones {
     order: -1;
     flex: 1 1 auto;
-    min-height: 44vh;
+    min-height: 46vh;
     display: grid;
-    place-items: center;
+    align-items: flex-start;
+    justify-items: center;
     padding: 0;
     position: relative;
     perspective: 1800px;
     width: 100%;
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
   }
 
   .hero-shot {
@@ -699,12 +707,12 @@
   }
 
   .hero-shot-front {
-    transform: translateX(-30%) translateY(4%) rotateZ(-8deg);
+    transform: translateX(-30%) translateY(10%) rotateZ(-8deg);
     z-index: 2;
   }
 
   .hero-shot-back {
-    transform: translateX(22%) translateY(-8%) rotateZ(6deg);
+    transform: translateX(22%) translateY(-2%) rotateZ(6deg);
     z-index: 1;
   }
 
@@ -882,11 +890,11 @@
 
 @media (max-width: 640px) {
   .launch-shell {
-    padding: 0.5rem 1rem 1rem;
+    padding: 0 1rem 0;
   }
 
   .hero-grid {
-    padding: 1rem 0;
+    padding: 0 0 max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
   }
 
   .hero-shot {
@@ -974,5 +982,330 @@
 @media (max-width: 414px) {
   .carousel-item {
     width: clamp(145px, 40vw, 190px);
+  }
+}
+
+/* ─── Button pair (iOS + Android side by side) ────────────────────────────── */
+
+.button-pair {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.button-pair .ios-button,
+.button-pair .android-button {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.button-pair-cta {
+  margin-top: 2.5rem;
+}
+
+.button-pair-cta .ios-button-compact {
+  margin-top: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── Android button ──────────────────────────────────────────────────────── */
+
+.android-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  border-radius: 999px;
+  padding: 0.94rem 1.6rem;
+  color: #d4f5e2;
+  font-size: 1.02rem;
+  line-height: 1;
+  font-weight: 540;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: center;
+  border: 1px solid rgba(61, 220, 132, 0.35);
+  background: linear-gradient(145deg, #1b3528 0%, #0d2018 50%, #07100c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(61, 220, 132, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 10px 24px rgba(4, 7, 10, 0.32);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.android-button::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 85% at 50% 0%,
+    rgba(61, 220, 132, 0.12) 0%,
+    rgba(255, 255, 255, 0.02) 46%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+.android-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(61, 220, 132, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.44),
+    0 14px 30px rgba(4, 7, 10, 0.36);
+}
+
+.android-button:active {
+  transform: scale(0.97);
+}
+
+.android-button svg,
+.android-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.android-button-compact {
+  padding: 1.1rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* ─── Android waitlist modal ─────────────────────────────────────────────── */
+
+.android-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(8, 10, 14, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.android-modal {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: #f9faf8;
+  border-radius: 1.25rem;
+  padding: 2.25rem 2rem 2rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.android-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: #ebebeb;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.android-modal-close:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.android-modal-header {
+  margin-bottom: 1.5rem;
+}
+
+.android-modal-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16a34a;
+  margin-bottom: 0.6rem;
+}
+
+.android-modal-eyebrow svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.android-modal-title {
+  font-size: 1.65rem;
+  font-weight: 760;
+  color: #0d0f12;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.android-modal-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.android-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.android-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.android-modal-field label {
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+.android-modal-optional {
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.android-modal-field input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.6rem;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  color: #0d0f12;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.android-modal-field input::placeholder {
+  color: #c4c9d0;
+}
+
+.android-modal-field input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.android-modal-error {
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 0.83rem;
+}
+
+.android-modal-submit {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.82rem 1rem;
+  border-radius: 999px;
+  background: #16a34a;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 680;
+  cursor: pointer;
+  transition: background 180ms ease, transform 150ms ease;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.android-modal-submit:hover:not(:disabled) {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+.android-modal-submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.android-modal-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.android-modal-success {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.android-modal-success-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.android-modal-success h3 {
+  font-size: 1.5rem;
+  font-weight: 760;
+  color: #0d0f12;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.android-modal-success p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ─── Responsive overrides for button pair ───────────────────────────────── */
+
+@media (max-width: 1060px) {
+  .button-pair {
+    width: 100%;
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .button-pair {
+    width: 100%;
+  }
+
+  /* Override the width:100% that ios-button gets at this breakpoint */
+  .button-pair .ios-button {
+    width: auto;
+    flex: 1;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .button-pair .android-button {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .button-pair-cta .ios-button-compact {
+    padding: 1rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .android-button-compact {
+    padding: 1rem 0.75rem;
+    font-size: 0.85rem;
   }
 }
